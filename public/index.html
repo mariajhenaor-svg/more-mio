@@ -24,7 +24,7 @@
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
   html, body { height: 100%; background: var(--mm-crema); }
   body { font-family: 'Jost', sans-serif; color: var(--mm-text); }
-  .app { max-width: 430px; margin: 0 auto; min-height: 100vh; display: flex; flex-direction: column; position: relative; }
+  .app { max-width: 430px; margin: 0 auto; min-height: 100vh; display: flex; flex-direction: column; }
   .header { background: var(--mm-vino); padding: 52px 16px 14px; text-align: center; }
   .header-logo { font-family: 'Grand Hotel', cursive; font-size: 34px; color: var(--mm-crema); line-height: 1; }
   .header-sub { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--mm-oro); letter-spacing: 2px; margin-top: 2px; text-transform: uppercase; }
@@ -66,12 +66,12 @@
   .estado-selector { display: flex; flex-wrap: wrap; gap: 7px; }
   .estado-opt { padding: 7px 11px; border-radius: 20px; font-size: 12px; border: 0.5px solid var(--mm-border); cursor: pointer; background: white; font-family: 'Space Mono', monospace; color: var(--mm-muted); }
   .estado-opt.sel { border-color: var(--mm-frambuesa); background: #fbeaf0; color: var(--mm-vino); }
-  .product-row { display: flex; align-items: center; gap: 8px; margin-bottom: 9px; }
-  .product-name { font-size: 13px; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .product-block { background: white; border: 0.5px solid var(--mm-border); border-radius: 10px; padding: 12px; margin-bottom: 10px; }
+  .product-block-name { font-size: 14px; font-weight: 500; margin-bottom: 10px; color: var(--mm-vino); }
+  .price-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 7px; }
+  .price-label { font-size: 12px; color: var(--mm-muted); flex: 1; }
+  .price-badge { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--mm-oro); background: #faeeda; padding: 2px 7px; border-radius: 10px; margin-right: 8px; white-space: nowrap; }
   .qty-input { width: 58px; padding: 7px 6px; border: 0.5px solid var(--mm-border); border-radius: 7px; font-size: 14px; text-align: center; font-family: 'Space Mono', monospace; background: white; color: var(--mm-text); outline: none; -webkit-appearance: none; }
-  .unit-toggle { display: flex; border: 0.5px solid var(--mm-border); border-radius: 7px; overflow: hidden; flex-shrink: 0; }
-  .unit-btn { padding: 7px 9px; font-size: 11px; background: white; border: none; cursor: pointer; color: var(--mm-muted); font-family: 'Space Mono', monospace; }
-  .unit-btn.active { background: var(--mm-frambuesa); color: white; }
   .receta-card { background: var(--mm-card); border: 0.5px solid var(--mm-border); border-radius: 14px; padding: 14px; margin-bottom: 12px; }
   .receta-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
   .receta-title { font-weight: 500; font-size: 14px; }
@@ -86,6 +86,7 @@
   .total-ing-row { display: flex; justify-content: space-between; font-size: 13px; padding: 5px 0; border-bottom: 0.5px solid rgba(251,243,222,0.12); }
   .total-ing-row:last-child { border: none; }
   .saldo-preview { border-radius: 9px; padding: 9px 13px; margin-bottom: 14px; font-family: 'Space Mono', monospace; font-size: 12px; }
+  .total-auto-box { background: #EAF3DE; border-radius: 9px; padding: 10px 13px; margin-bottom: 14px; font-family: 'Space Mono', monospace; font-size: 13px; color: #27500A; font-weight: 500; }
   .cal-btn { width: 100%; padding: 12px; background: none; border: 0.5px solid var(--mm-oro); color: var(--mm-vino); border-radius: 10px; font-family: 'Jost', sans-serif; font-size: 13px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 4px; margin-bottom: 10px; }
   .no-pedidos { text-align: center; padding: 40px 16px; color: var(--mm-muted); font-size: 14px; }
   .no-pedidos i { font-size: 36px; display: block; margin-bottom: 10px; color: var(--mm-oro); }
@@ -95,71 +96,44 @@
   .modal-title { font-family: 'Grand Hotel', cursive; font-size: 26px; color: var(--mm-frambuesa); margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; }
   .close-btn { background: none; border: none; font-size: 22px; cursor: pointer; color: var(--mm-muted); line-height: 1; padding: 4px; }
   .modal-handle { width: 36px; height: 4px; background: var(--mm-border); border-radius: 2px; margin: 0 auto 16px; }
-  .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: var(--mm-vino); color: var(--mm-crema); padding: 10px 20px; border-radius: 20px; font-family: 'Space Mono', monospace; font-size: 12px; z-index: 100; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+  .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: var(--mm-vino); color: var(--mm-crema); padding: 10px 20px; border-radius: 20px; font-family: 'Space Mono', monospace; font-size: 12px; z-index: 100; opacity: 0; transition: opacity 0.3s; pointer-events: none; white-space: nowrap; }
   .toast.show { opacity: 1; }
+  .divider { border: none; border-top: 0.5px solid var(--mm-border); margin: 14px 0; }
 </style>
 </head>
 <body>
 <div class="app" id="mainApp">
-
   <div class="header">
     <div class="header-logo">More Mío</div>
     <div class="header-sub">repostería artesanal · cali</div>
   </div>
-
   <nav class="nav">
-    <button class="nav-btn active" onclick="showScreen('pedidos',this)">
-      <i class="ti ti-shopping-bag" aria-hidden="true"></i>Pedidos
-    </button>
-    <button class="nav-btn" onclick="showScreen('recetas',this)">
-      <i class="ti ti-book" aria-hidden="true"></i>Recetas
-    </button>
-    <button class="nav-btn" onclick="showScreen('cocinar',this)">
-      <i class="ti ti-chef-hat" aria-hidden="true"></i>Cocinar hoy
-    </button>
+    <button class="nav-btn active" onclick="showScreen('pedidos',this)"><i class="ti ti-shopping-bag"></i>Pedidos</button>
+    <button class="nav-btn" onclick="showScreen('recetas',this)"><i class="ti ti-book"></i>Recetas</button>
+    <button class="nav-btn" onclick="showScreen('cocinar',this)"><i class="ti ti-chef-hat"></i>Cocinar hoy</button>
   </nav>
 
-  <!-- PEDIDOS -->
   <div id="screen-pedidos" class="screen active">
-    <button class="fab" onclick="openModal('nuevo-pedido')">
-      <i class="ti ti-plus" aria-hidden="true"></i> Nuevo pedido
-    </button>
-    <div id="lista-pedidos">
-      <div class="no-pedidos">
-        <i class="ti ti-cake" aria-hidden="true"></i>
-        Aún no hay pedidos.<br>¡Agrega el primero!
-      </div>
-    </div>
+    <button class="fab" onclick="openModal('nuevo-pedido')"><i class="ti ti-plus"></i> Nuevo pedido</button>
+    <div id="lista-pedidos"><div class="no-pedidos"><i class="ti ti-cake"></i>Aún no hay pedidos.<br>¡Agrega el primero!</div></div>
   </div>
 
-  <!-- RECETAS -->
   <div id="screen-recetas" class="screen">
     <p class="section-title">mis recetas</p>
     <div id="lista-recetas"></div>
-    <button class="btn-secondary" onclick="openModal('nueva-receta')">
-      <i class="ti ti-plus" aria-hidden="true"></i> Agregar receta
-    </button>
+    <button class="btn-secondary" onclick="openModal('nueva-receta')"><i class="ti ti-plus"></i> Agregar receta</button>
   </div>
 
-  <!-- COCINAR HOY -->
   <div id="screen-cocinar" class="screen">
     <p class="section-title">resumen del día</p>
-    <div id="resumen-cocinar">
-      <div class="no-pedidos">
-        <i class="ti ti-mood-smile" aria-hidden="true"></i>
-        No hay pedidos pendientes de producción.
-      </div>
-    </div>
+    <div id="resumen-cocinar"><div class="no-pedidos"><i class="ti ti-mood-smile"></i>No hay pedidos pendientes.</div></div>
   </div>
 
-  <!-- MODAL: NUEVO PEDIDO -->
+  <!-- MODAL NUEVO PEDIDO -->
   <div class="modal-overlay" id="modal-nuevo-pedido">
     <div class="modal-box">
       <div class="modal-handle"></div>
-      <div class="modal-title">
-        Nuevo pedido
-        <button class="close-btn" onclick="closeModal('nuevo-pedido')" aria-label="Cerrar">×</button>
-      </div>
+      <div class="modal-title">Nuevo pedido <button class="close-btn" onclick="closeModal('nuevo-pedido')">×</button></div>
       <div class="form-group">
         <label class="form-label">cliente</label>
         <input class="form-input" id="np-cliente" placeholder="Nombre del cliente" autocomplete="off">
@@ -177,8 +151,11 @@
         <input class="form-input" id="np-fecha" type="date">
       </div>
       <div class="form-group">
-        <label class="form-label" style="margin-bottom:10px;">productos</label>
+        <label class="form-label" style="margin-bottom:10px;">productos y cantidades</label>
         <div id="np-productos"></div>
+      </div>
+      <div class="total-auto-box" id="np-total-auto" style="display:none;">
+        Total estimado: <span id="np-total-valor">$0</span>
       </div>
       <div class="form-group">
         <label class="form-label" style="margin-bottom:10px;">estado de producción</label>
@@ -199,9 +176,7 @@
           <input class="form-input" id="np-abono" type="number" placeholder="0" inputmode="numeric" oninput="calcSaldo()">
         </div>
       </div>
-      <div class="saldo-preview" id="np-saldo-preview" style="background:#fbeaf0;color:#72243E;">
-        Saldo pendiente: $0
-      </div>
+      <div class="saldo-preview" id="np-saldo-preview" style="background:#fbeaf0;color:#72243E;">Saldo pendiente: $0</div>
       <div class="form-group">
         <label class="form-label" style="margin-bottom:10px;">forma de pago</label>
         <div class="estado-selector" id="np-pago">
@@ -210,29 +185,23 @@
           <span class="estado-opt" data-val="transferencia">Transferencia</span>
         </div>
       </div>
-      <button class="cal-btn" onclick="addToCalendar()">
-        <i class="ti ti-calendar" aria-hidden="true" style="font-size:17px;"></i>
-        Agregar al Calendario de iPhone
-      </button>
+      <button class="cal-btn" onclick="addToCalendar()"><i class="ti ti-calendar" style="font-size:17px;"></i> Agregar al Calendario de iPhone</button>
       <button class="btn-primary" onclick="guardarPedido()">Guardar pedido</button>
     </div>
   </div>
 
-  <!-- MODAL: NUEVA RECETA -->
+  <!-- MODAL NUEVA RECETA -->
   <div class="modal-overlay" id="modal-nueva-receta">
     <div class="modal-box">
       <div class="modal-handle"></div>
-      <div class="modal-title">
-        Nueva receta
-        <button class="close-btn" onclick="closeModal('nueva-receta')" aria-label="Cerrar">×</button>
-      </div>
+      <div class="modal-title">Nueva receta <button class="close-btn" onclick="closeModal('nueva-receta')">×</button></div>
       <div class="form-group">
         <label class="form-label">producto</label>
         <select class="form-select" id="nr-producto" onchange="toggleNuevoProducto()">
-          <option>Alfajores arequipe</option>
-          <option>Alfajores milo</option>
           <option>Brownie milo</option>
           <option>Brownie stevia</option>
+          <option>Alfajores arequipe</option>
+          <option>Alfajores milo</option>
           <option value="__nuevo__">+ Nuevo producto</option>
         </select>
       </div>
@@ -242,7 +211,7 @@
       </div>
       <div class="form-group">
         <label class="form-label">rinde (unidades base)</label>
-        <input class="form-input" id="nr-base" type="number" placeholder="Ej: 6" value="6" inputmode="numeric">
+        <input class="form-input" id="nr-base" type="number" placeholder="Ej: 24" value="24" inputmode="numeric">
       </div>
       <div class="form-group">
         <label class="form-label" style="margin-bottom:10px;">ingredientes</label>
@@ -250,9 +219,7 @@
           <div class="ing-row">
             <input class="ing-name-input" placeholder="Ingrediente">
             <input class="ing-amount" placeholder="100" type="number" inputmode="decimal">
-            <select class="ing-unit-select">
-              <option>g</option><option>ml</option><option>tsp</option><option>tbsp</option><option>und</option>
-            </select>
+            <select class="ing-unit-select"><option>g</option><option>ml</option><option>tsp</option><option>tbsp</option><option>und</option><option>pizca</option></select>
           </div>
         </div>
         <button class="btn-add-ing" onclick="addIngrediente()">+ ingrediente</button>
@@ -261,14 +228,11 @@
     </div>
   </div>
 
-  <!-- MODAL: EDITAR ESTADO -->
+  <!-- MODAL EDITAR ESTADO -->
   <div class="modal-overlay" id="modal-edit-estado">
     <div class="modal-box">
       <div class="modal-handle"></div>
-      <div class="modal-title">
-        Actualizar estado
-        <button class="close-btn" onclick="closeModal('edit-estado')" aria-label="Cerrar">×</button>
-      </div>
+      <div class="modal-title">Actualizar estado <button class="close-btn" onclick="closeModal('edit-estado')">×</button></div>
       <div class="form-group">
         <label class="form-label" style="margin-bottom:10px;">estado de producción</label>
         <div class="estado-selector" id="ee-estado">
@@ -287,16 +251,116 @@
 </div>
 
 <script>
+// ===== DATOS PRECARGADOS =====
+const RECETAS_DEFAULT = [
+  {
+    producto: 'Brownie milo',
+    base: 24,
+    ingredientes: [
+      {nombre:'Harina de trigo', cantidad:115, unidad:'g'},
+      {nombre:'Milo', cantidad:100, unidad:'g'},
+      {nombre:'Mantequilla', cantidad:100, unidad:'g'},
+      {nombre:'Azúcar morena', cantidad:90, unidad:'g'},
+      {nombre:'Azúcar blanca', cantidad:95, unidad:'g'},
+      {nombre:'Huevos', cantidad:2, unidad:'und'},
+      {nombre:'Sal', cantidad:5, unidad:'g'},
+      {nombre:'Esencia de vainilla', cantidad:1, unidad:'ml'},
+      {nombre:'Polvo de hornear', cantidad:2.5, unidad:'g'}
+    ]
+  },
+  {
+    producto: 'Brownie stevia',
+    base: 24,
+    ingredientes: [
+      {nombre:'Harina de avena', cantidad:50, unidad:'g'},
+      {nombre:'Harina de almendra', cantidad:50, unidad:'g'},
+      {nombre:'Cacao en polvo', cantidad:40, unidad:'g'},
+      {nombre:'Stevia', cantidad:110, unidad:'g'},
+      {nombre:'Huevos', cantidad:4, unidad:'und'},
+      {nombre:'Aceite de coco', cantidad:95, unidad:'ml'},
+      {nombre:'Polvo de hornear', cantidad:5, unidad:'g'},
+      {nombre:'Esencia de vainilla', cantidad:4, unidad:'ml'},
+      {nombre:'Sal', cantidad:1, unidad:'pizca'}
+    ]
+  },
+  {
+    producto: 'Alfajores arequipe',
+    base: 24,
+    ingredientes: [
+      {nombre:'Harina de trigo', cantidad:150, unidad:'g'},
+      {nombre:'Maicena', cantidad:200, unidad:'g'},
+      {nombre:'Azúcar pulverizada', cantidad:80, unidad:'g'},
+      {nombre:'Mantequilla fría', cantidad:150, unidad:'g'},
+      {nombre:'Yemas de huevo', cantidad:2, unidad:'und'},
+      {nombre:'Esencia de vainilla', cantidad:5, unidad:'ml'},
+      {nombre:'Polvo de hornear', cantidad:4, unidad:'g'},
+      {nombre:'Sal', cantidad:1, unidad:'pizca'},
+      {nombre:'Arequipe (relleno)', cantidad:1, unidad:'und'}
+    ]
+  },
+  {
+    producto: 'Alfajores milo',
+    base: 24,
+    ingredientes: [
+      {nombre:'Harina de trigo', cantidad:200, unidad:'g'},
+      {nombre:'Maicena', cantidad:150, unidad:'g'},
+      {nombre:'Milo en polvo', cantidad:60, unidad:'g'},
+      {nombre:'Azúcar pulverizada', cantidad:80, unidad:'g'},
+      {nombre:'Mantequilla fría', cantidad:150, unidad:'g'},
+      {nombre:'Yemas de huevo', cantidad:3, unidad:'und'},
+      {nombre:'Esencia de vainilla', cantidad:5, unidad:'ml'},
+      {nombre:'Polvo de hornear', cantidad:5, unidad:'g'},
+      {nombre:'Sal', cantidad:1, unidad:'pizca'},
+      {nombre:'Milo untable (relleno)', cantidad:1, unidad:'und'}
+    ]
+  }
+];
+
+// ===== PRECIOS =====
+// Estructura: producto -> opciones de precio [{label, qty, unit, precio}]
+const PRECIOS = {
+  'Brownie milo': [
+    {label:'Unidad', qty:1, unit:'und', precio:1500},
+    {label:'Paquete x12', qty:12, unit:'paq', precio:15000},
+    {label:'Paquete x24', qty:24, unit:'paq', precio:27000}
+  ],
+  'Brownie stevia': [
+    {label:'Unidad', qty:1, unit:'und', precio:2000},
+    {label:'Paquete x12', qty:12, unit:'paq', precio:22000},
+    {label:'Paquete x24', qty:24, unit:'paq', precio:48000}
+  ],
+  'Alfajores arequipe': [
+    {label:'Unidad', qty:1, unit:'und', precio:1200},
+    {label:'Caja x12', qty:12, unit:'caja', precio:14000},
+    {label:'Caja x24', qty:24, unit:'caja', precio:27000}
+  ],
+  'Alfajores milo': [
+    {label:'Unidad', qty:1, unit:'und', precio:1500},
+    {label:'Caja x12', qty:12, unit:'caja', precio:17000},
+    {label:'Caja x24', qty:24, unit:'caja', precio:31000}
+  ],
+  'Mixtos (6 Arequipe + 6 Milo)': [
+    {label:'Caja x12', qty:12, unit:'caja', precio:15000},
+    {label:'Caja x24', qty:24, unit:'caja', precio:29000}
+  ]
+};
+
 const ESTADOS = [
-  { label: 'Pendiente comprar', cls: 'badge-estado-0' },
-  { label: 'Hacer de cero',     cls: 'badge-estado-1' },
-  { label: 'Masa lista',        cls: 'badge-estado-2' },
-  { label: 'Hecho',             cls: 'badge-estado-3' }
+  {label:'Pendiente comprar', cls:'badge-estado-0'},
+  {label:'Hacer de cero', cls:'badge-estado-1'},
+  {label:'Masa lista', cls:'badge-estado-2'},
+  {label:'Hecho', cls:'badge-estado-3'}
 ];
 
 let pedidos = JSON.parse(localStorage.getItem('mm_pedidos') || '[]');
 let recetas = JSON.parse(localStorage.getItem('mm_recetas') || '[]');
 let editEstadoIdx = null;
+
+// Cargar recetas default si no hay ninguna guardada
+if (!recetas.length) {
+  recetas = RECETAS_DEFAULT;
+  localStorage.setItem('mm_recetas', JSON.stringify(recetas));
+}
 
 function showToast(msg) {
   const t = document.getElementById('toast');
@@ -325,55 +389,68 @@ function closeModal(id) {
   document.body.style.overflow = '';
 }
 
-function initNuevoPedido() {
-  ['np-cliente','np-dir','np-nota','np-total','np-abono'].forEach(id => {
-    document.getElementById(id).value = '';
-  });
-  document.getElementById('np-fecha').value = '';
-  const preview = document.getElementById('np-saldo-preview');
-  preview.textContent = 'Saldo pendiente: $0';
-  preview.style.background = '#fbeaf0';
-  preview.style.color = '#72243E';
-  const allProds = getProductosList();
-  const cont = document.getElementById('np-productos');
-  cont.innerHTML = allProds.map(p => `
-    <div class="product-row">
-      <span class="product-name">${p}</span>
-      <input class="qty-input" type="number" min="0" value="0" data-prod="${p}" inputmode="numeric">
-      <div class="unit-toggle">
-        <button class="unit-btn active" onclick="setUnit(this,'und')">und</button>
-        <button class="unit-btn" onclick="setUnit(this,'caja')">caja</button>
-      </div>
-    </div>`).join('');
-  setupSelector('np-estado', 0);
-  setupSelector('np-pago', null, true);
-}
-
 function getProductosList() {
-  const base = ['Alfajores arequipe','Alfajores milo','Brownie milo','Brownie stevia'];
+  const base = ['Brownie milo','Brownie stevia','Alfajores arequipe','Alfajores milo','Mixtos (6 Arequipe + 6 Milo)'];
   const extra = recetas.map(r => r.producto).filter(p => !base.includes(p));
   return [...base, ...extra];
 }
 
-function setUnit(btn) {
-  const tog = btn.closest('.unit-toggle');
-  tog.querySelectorAll('.unit-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
+function initNuevoPedido() {
+  ['np-cliente','np-dir','np-nota','np-total','np-abono'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('np-fecha').value = '';
+  document.getElementById('np-total-auto').style.display = 'none';
+  document.getElementById('np-total-valor').textContent = '$0';
+  const preview = document.getElementById('np-saldo-preview');
+  preview.textContent = 'Saldo pendiente: $0';
+  preview.style.background = '#fbeaf0';
+  preview.style.color = '#72243E';
+
+  const allProds = getProductosList();
+  const cont = document.getElementById('np-productos');
+  cont.innerHTML = allProds.map(p => {
+    const opciones = PRECIOS[p] || [{label:'Unidad', qty:1, unit:'und', precio:0}];
+    return `
+      <div class="product-block" data-prod="${p}">
+        <div class="product-block-name">${p}</div>
+        ${opciones.map((op, oi) => `
+          <div class="price-row">
+            <span class="price-label">${op.label}</span>
+            <span class="price-badge">$${op.precio.toLocaleString('es-CO')}</span>
+            <input class="qty-input" type="number" min="0" value="0"
+              data-prod="${p}" data-precio="${op.precio}" data-qty="${op.qty}" data-unit="${op.unit}" data-label="${op.label}"
+              inputmode="numeric" oninput="calcTotal()">
+          </div>`).join('')}
+      </div>`;
+  }).join('');
+
+  setupSelector('np-estado', 0);
+  setupSelector('np-pago', null, true);
+}
+
+function calcTotal() {
+  let total = 0;
+  document.querySelectorAll('#np-productos .qty-input').forEach(input => {
+    const qty = parseInt(input.value) || 0;
+    const precio = parseInt(input.dataset.precio) || 0;
+    total += qty * precio;
+  });
+  if (total > 0) {
+    document.getElementById('np-total-auto').style.display = 'block';
+    document.getElementById('np-total-valor').textContent = '$' + total.toLocaleString('es-CO');
+    document.getElementById('np-total').value = total;
+    calcSaldo();
+  } else {
+    document.getElementById('np-total-auto').style.display = 'none';
+  }
 }
 
 function setupSelector(containerId, defaultVal, byText) {
   const opts = document.querySelectorAll('#' + containerId + ' .estado-opt');
   opts.forEach(opt => {
     opt.classList.remove('sel');
-    if (byText) {
-      if (opt.dataset.val === 'efectivo') opt.classList.add('sel');
-    } else {
-      if (parseInt(opt.dataset.val) === defaultVal) opt.classList.add('sel');
-    }
-    opt.onclick = function() {
-      opts.forEach(o => o.classList.remove('sel'));
-      this.classList.add('sel');
-    };
+    if (byText) { if (opt.dataset.val === 'efectivo') opt.classList.add('sel'); }
+    else { if (parseInt(opt.dataset.val) === defaultVal) opt.classList.add('sel'); }
+    opt.onclick = function() { opts.forEach(o => o.classList.remove('sel')); this.classList.add('sel'); };
   });
 }
 
@@ -383,11 +460,8 @@ function calcSaldo() {
   const saldo = total - abono;
   const el = document.getElementById('np-saldo-preview');
   el.textContent = 'Saldo pendiente: $' + saldo.toLocaleString('es-CO');
-  if (saldo <= 0) {
-    el.style.background = '#EAF3DE'; el.style.color = '#27500A';
-  } else {
-    el.style.background = '#fbeaf0'; el.style.color = '#A32D2D';
-  }
+  el.style.background = saldo <= 0 ? '#EAF3DE' : '#fbeaf0';
+  el.style.color = saldo <= 0 ? '#27500A' : '#A32D2D';
 }
 
 function getSelectedOpt(containerId) {
@@ -400,25 +474,29 @@ async function guardarPedido() {
   if (!cliente) { alert('Pon el nombre del cliente'); return; }
 
   const items = [];
-  document.querySelectorAll('#np-productos .product-row').forEach(row => {
-    const qty = parseInt(row.querySelector('.qty-input').value) || 0;
-    if (qty > 0) {
-      const unit = row.querySelector('.unit-btn.active').textContent;
-      items.push({ prod: row.querySelector('.product-name').textContent, qty, unit });
-    }
+  document.querySelectorAll('#np-productos .qty-input').forEach(input => {
+    const qty = parseInt(input.value) || 0;
+    if (qty > 0) items.push({
+      prod: input.dataset.prod,
+      label: input.dataset.label,
+      qty,
+      unit: input.dataset.unit,
+      precio: parseInt(input.dataset.precio) || 0,
+      subtotal: qty * (parseInt(input.dataset.precio) || 0)
+    });
   });
 
   const pedido = {
     id: Date.now(),
     cliente,
-    dir:    document.getElementById('np-dir').value.trim(),
-    nota:   document.getElementById('np-nota').value.trim(),
-    fecha:  document.getElementById('np-fecha').value,
+    dir: document.getElementById('np-dir').value.trim(),
+    nota: document.getElementById('np-nota').value.trim(),
+    fecha: document.getElementById('np-fecha').value,
     items,
     estado: parseInt(getSelectedOpt('np-estado') || '0'),
-    total:  parseFloat(document.getElementById('np-total').value) || 0,
-    abono:  parseFloat(document.getElementById('np-abono').value) || 0,
-    pago:   getSelectedOpt('np-pago') || 'efectivo'
+    total: parseFloat(document.getElementById('np-total').value) || 0,
+    abono: parseFloat(document.getElementById('np-abono').value) || 0,
+    pago: getSelectedOpt('np-pago') || 'efectivo'
   };
 
   pedidos.unshift(pedido);
@@ -426,19 +504,14 @@ async function guardarPedido() {
   closeModal('nuevo-pedido');
   renderPedidos();
 
-  // Enviar a Google Sheets via API
   try {
     const res = await fetch('/api/pedidos', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(pedido)
     });
-    if (res.ok) {
-      showToast('✓ Guardado en historial');
-    } else {
-      showToast('⚠ Sin conexión al historial');
-    }
-  } catch (e) {
+    showToast(res.ok ? '✓ Guardado en historial' : '⚠ Sin conexión al historial');
+  } catch(e) {
     showToast('⚠ Sin conexión al historial');
   }
 }
@@ -446,7 +519,7 @@ async function guardarPedido() {
 function renderPedidos() {
   const cont = document.getElementById('lista-pedidos');
   if (!pedidos.length) {
-    cont.innerHTML = `<div class="no-pedidos"><i class="ti ti-cake" aria-hidden="true"></i>Aún no hay pedidos.<br>¡Agrega el primero!</div>`;
+    cont.innerHTML = `<div class="no-pedidos"><i class="ti ti-cake"></i>Aún no hay pedidos.<br>¡Agrega el primero!</div>`;
     return;
   }
   cont.innerHTML = pedidos.map((p, i) => {
@@ -455,28 +528,26 @@ function renderPedidos() {
       ? `<span class="saldo-chip saldo-pend">Saldo $${saldo.toLocaleString('es-CO')}</span>`
       : `<span class="saldo-chip saldo-ok"><i class="ti ti-check" style="font-size:11px;"></i> Pagado</span>`;
     const itemsTxt = p.items.length
-      ? p.items.map(it => `${it.qty} ${it.unit} ${it.prod}`).join(' · ')
+      ? p.items.map(it => `${it.qty} ${it.unit || ''} ${it.prod}`).join(' · ')
       : 'Sin productos';
-    const fechaTxt = p.fecha
-      ? new Date(p.fecha + 'T12:00:00').toLocaleDateString('es-CO', { day: 'numeric', month: 'short' })
-      : '';
-    return `
-      <div class="order-card">
-        <div class="order-card-top">
-          <div>
-            <div class="order-client">${p.cliente}</div>
-            ${p.dir ? `<div class="order-dir"><i class="ti ti-map-pin" style="font-size:12px;"></i> ${p.dir}</div>` : ''}
-          </div>
-          <div class="order-date">${fechaTxt}</div>
+    const totalTxt = p.total ? ` · $${p.total.toLocaleString('es-CO')}` : '';
+    const fechaTxt = p.fecha ? new Date(p.fecha+'T12:00:00').toLocaleDateString('es-CO',{day:'numeric',month:'short'}) : '';
+    return `<div class="order-card">
+      <div class="order-card-top">
+        <div>
+          <div class="order-client">${p.cliente}</div>
+          ${p.dir ? `<div class="order-dir"><i class="ti ti-map-pin" style="font-size:12px;"></i> ${p.dir}</div>` : ''}
         </div>
-        <div class="order-items">${itemsTxt}</div>
-        <div class="order-footer">
-          <span class="badge ${ESTADOS[p.estado].cls}" onclick="abrirEditEstado(${i})">${ESTADOS[p.estado].label}</span>
-          <span class="badge badge-pago">${p.pago}</span>
-          ${saldoHtml}
-        </div>
-        ${p.nota ? `<div class="order-nota"><i class="ti ti-info-circle" style="font-size:11px;"></i> ${p.nota}</div>` : ''}
-      </div>`;
+        <div class="order-date">${fechaTxt}</div>
+      </div>
+      <div class="order-items">${itemsTxt}${totalTxt}</div>
+      <div class="order-footer">
+        <span class="badge ${ESTADOS[p.estado].cls}" onclick="abrirEditEstado(${i})">${ESTADOS[p.estado].label}</span>
+        <span class="badge badge-pago">${p.pago}</span>
+        ${saldoHtml}
+      </div>
+      ${p.nota ? `<div class="order-nota"><i class="ti ti-info-circle" style="font-size:11px;"></i> ${p.nota}</div>` : ''}
+    </div>`;
   }).join('');
 }
 
@@ -485,10 +556,7 @@ function abrirEditEstado(idx) {
   const opts = document.querySelectorAll('#ee-estado .estado-opt');
   opts.forEach(opt => {
     opt.classList.toggle('sel', parseInt(opt.dataset.val) === pedidos[idx].estado);
-    opt.onclick = function() {
-      opts.forEach(o => o.classList.remove('sel'));
-      this.classList.add('sel');
-    };
+    opt.onclick = function() { opts.forEach(o => o.classList.remove('sel')); this.classList.add('sel'); };
   });
   openModal('edit-estado');
 }
@@ -504,7 +572,7 @@ function guardarEstado() {
 
 function eliminarPedido() {
   if (editEstadoIdx === null) return;
-  if (!confirm('¿Eliminar este pedido? Esta acción no se puede deshacer.')) return;
+  if (!confirm('¿Eliminar este pedido?')) return;
   pedidos.splice(editEstadoIdx, 1);
   localStorage.setItem('mm_pedidos', JSON.stringify(pedidos));
   editEstadoIdx = null;
@@ -513,20 +581,15 @@ function eliminarPedido() {
 }
 
 function toggleNuevoProducto() {
-  const sel = document.getElementById('nr-producto');
-  document.getElementById('nr-nuevo-wrap').style.display = sel.value === '__nuevo__' ? 'block' : 'none';
+  document.getElementById('nr-nuevo-wrap').style.display =
+    document.getElementById('nr-producto').value === '__nuevo__' ? 'block' : 'none';
 }
 
 function addIngrediente() {
   const cont = document.getElementById('nr-ingredientes');
   const row = document.createElement('div');
   row.className = 'ing-row';
-  row.innerHTML = `
-    <input class="ing-name-input" placeholder="Ingrediente">
-    <input class="ing-amount" placeholder="0" type="number" inputmode="decimal">
-    <select class="ing-unit-select">
-      <option>g</option><option>ml</option><option>tsp</option><option>tbsp</option><option>und</option>
-    </select>`;
+  row.innerHTML = `<input class="ing-name-input" placeholder="Ingrediente"><input class="ing-amount" placeholder="0" type="number" inputmode="decimal"><select class="ing-unit-select"><option>g</option><option>ml</option><option>tsp</option><option>tbsp</option><option>und</option><option>pizca</option></select>`;
   cont.appendChild(row);
 }
 
@@ -537,38 +600,28 @@ function guardarReceta() {
     producto = document.getElementById('nr-nuevo-nombre').value.trim();
     if (!producto) { alert('Pon el nombre del producto'); return; }
   }
-  const base = parseInt(document.getElementById('nr-base').value) || 6;
+  const base = parseInt(document.getElementById('nr-base').value) || 24;
   const ings = [];
   document.querySelectorAll('#nr-ingredientes .ing-row').forEach(row => {
     const n = row.querySelector('.ing-name-input').value.trim();
     const a = parseFloat(row.querySelector('.ing-amount').value) || 0;
     const u = row.querySelector('.ing-unit-select').value;
-    if (n && a) ings.push({ nombre: n, cantidad: a, unidad: u });
+    if (n && a) ings.push({nombre:n, cantidad:a, unidad:u});
   });
   const existing = recetas.findIndex(r => r.producto === producto);
-  const rec = { producto, base, ingredientes: ings };
+  const rec = {producto, base, ingredientes:ings};
   if (existing >= 0) recetas[existing] = rec; else recetas.push(rec);
   localStorage.setItem('mm_recetas', JSON.stringify(recetas));
   closeModal('nueva-receta');
   renderRecetas();
-  document.getElementById('nr-ingredientes').innerHTML = `
-    <div class="ing-row">
-      <input class="ing-name-input" placeholder="Ingrediente">
-      <input class="ing-amount" placeholder="100" type="number" inputmode="decimal">
-      <select class="ing-unit-select">
-        <option>g</option><option>ml</option><option>tsp</option><option>tbsp</option><option>und</option>
-      </select>
-    </div>`;
-  selProd.value = 'Alfajores arequipe';
+  document.getElementById('nr-ingredientes').innerHTML = `<div class="ing-row"><input class="ing-name-input" placeholder="Ingrediente"><input class="ing-amount" placeholder="100" type="number" inputmode="decimal"><select class="ing-unit-select"><option>g</option><option>ml</option><option>tsp</option><option>tbsp</option><option>und</option><option>pizca</option></select></div>`;
+  selProd.value = 'Brownie milo';
   document.getElementById('nr-nuevo-wrap').style.display = 'none';
 }
 
 function renderRecetas() {
   const cont = document.getElementById('lista-recetas');
-  if (!recetas.length) {
-    cont.innerHTML = `<p style="color:var(--mm-muted);font-size:13px;margin-bottom:12px;">Aún no tienes recetas. Agrega la primera para que "Cocinar hoy" calcule los ingredientes.</p>`;
-    return;
-  }
+  if (!recetas.length) { cont.innerHTML = `<p style="color:var(--mm-muted);font-size:13px;margin-bottom:12px;">Aún no tienes recetas.</p>`; return; }
   cont.innerHTML = recetas.map((r, i) => `
     <div class="receta-card">
       <div class="receta-header">
@@ -596,22 +649,22 @@ function eliminarReceta(idx) {
 function renderCocinar() {
   const cont = document.getElementById('resumen-cocinar');
   const activos = pedidos.filter(p => p.estado !== 3);
-  if (!activos.length) {
-    cont.innerHTML = `<div class="no-pedidos"><i class="ti ti-mood-smile" aria-hidden="true"></i>No hay pedidos pendientes de producción.</div>`;
-    return;
-  }
+  if (!activos.length) { cont.innerHTML = `<div class="no-pedidos"><i class="ti ti-mood-smile"></i>No hay pedidos pendientes.</div>`; return; }
+
   const totales = {};
   activos.forEach(p => {
     p.items.forEach(it => {
       const rec = recetas.find(r => r.producto === it.prod);
       if (!rec || !rec.ingredientes.length) return;
-      const factor = it.qty / rec.base;
+      const unidades = it.qty * (it.qty === 1 ? 1 : (it.unit === 'und' ? 1 : parseInt(it.label?.match(/\d+/)?.[0]) || it.qty));
+      const factor = unidades / rec.base;
       rec.ingredientes.forEach(ing => {
         const key = ing.nombre + '||' + ing.unidad;
         totales[key] = (totales[key] || 0) + ing.cantidad * factor;
       });
     });
   });
+
   const keys = Object.keys(totales);
   const totalHtml = keys.length ? `
     <div class="total-box">
@@ -622,13 +675,14 @@ function renderCocinar() {
         const display = val % 1 === 0 ? val : parseFloat(val.toFixed(1));
         return `<div class="total-ing-row"><span>${nombre}</span><span style="font-family:'Space Mono',monospace;">${display} ${unidad}</span></div>`;
       }).join('')}
-    </div>` : `<div style="background:#faeeda;border-radius:10px;padding:12px 14px;font-size:13px;color:#633806;margin-bottom:16px;"><i class="ti ti-info-circle" style="font-size:14px;"></i> Agrega recetas a tus productos para ver el total de ingredientes.</div>`;
+    </div>` : `<div style="background:#faeeda;border-radius:10px;padding:12px 14px;font-size:13px;color:#633806;margin-bottom:16px;">Agrega recetas para ver el total de ingredientes.</div>`;
+
   cont.innerHTML = totalHtml + `
     <p class="section-title">pedidos activos (${activos.length})</p>
     ${activos.map(p => `
       <div style="background:var(--mm-card);border:0.5px solid var(--mm-border);border-radius:12px;padding:12px 14px;margin-bottom:9px;">
         <div style="font-weight:500;font-size:14px;margin-bottom:3px;">${p.cliente}</div>
-        <div style="font-size:12px;color:var(--mm-muted);margin-bottom:8px;">${p.items.map(it => it.qty + ' ' + it.unit + ' ' + it.prod).join(' · ') || 'Sin productos'}</div>
+        <div style="font-size:12px;color:var(--mm-muted);margin-bottom:8px;">${p.items.map(it=>it.qty+' '+(it.unit||'')+' '+it.prod).join(' · ')||'Sin productos'}</div>
         <span class="badge ${ESTADOS[p.estado].cls}">${ESTADOS[p.estado].label}</span>
       </div>`).join('')}`;
 }
@@ -637,7 +691,7 @@ function addToCalendar() {
   const cliente = document.getElementById('np-cliente').value.trim() || 'Pedido';
   const fecha = document.getElementById('np-fecha').value;
   if (!fecha) { alert('Pon la fecha de entrega primero'); return; }
-  const d = fecha.replace(/-/g, '');
+  const d = fecha.replace(/-/g,'');
   const title = encodeURIComponent('More Mío · ' + cliente);
   const notes = encodeURIComponent('Pedido de repostería para ' + cliente);
   window.open(`https://calendar.google.com/calendar/event?action=TEMPLATE&dates=${d}/${d}&text=${title}&details=${notes}`, '_blank');
